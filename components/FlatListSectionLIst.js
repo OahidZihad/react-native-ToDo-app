@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, FlatList, SectionList} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  SectionList,
+  ScrollView,
+} from 'react-native';
 import React, {useState} from 'react';
 
 const FlatListSectionLIst = () => {
@@ -33,37 +40,35 @@ const FlatListSectionLIst = () => {
   ];
 
   return (
-    // <FlatList
-    //   numColumns={2}
-    //   keyExtractor={(element, index) => index.toString()}
-    //   data={Items}
-    //   renderItem={element => {
-    //     console.log(element);
-    //     return (
-    //       <View style={styles.item}>
-    //         <Text style={styles.text}>{element.item.item}</Text>
-    //       </View>
-    //     );
-    //   }}
-    // />
+    <ScrollView style={styles.body}>
+      <Text>FlatList</Text>
+      <FlatList
+        numColumns={2}
+        keyExtractor={(element, index) => index.toString()}
+        data={Items}
+        renderItem={element => {
+          return (
+            <View style={styles.item}>
+              <Text style={styles.text}>{element.item.item}</Text>
+            </View>
+          );
+        }}
+      />
 
-    <SectionList
-      keyExtractor={(element, index) => index.toString()}
-      sections={Data}
-      renderItem={element => {
-        console.log(element);
-        return (
-          //   <View style={styles.item}>
-          <Text style={styles.text}>{element.item}</Text>
-          //   </View>
-        );
-      }}
-      renderSectionHeader={section => (
-        <View style={styles.item}>
-          <Text style={styles.text}>{section.section.title}</Text>
-        </View>
-      )}
-    />
+      <Text>SectionList</Text>
+      <SectionList
+        keyExtractor={(element, index) => index.toString()}
+        sections={Data}
+        renderItem={element => {
+          return <Text style={styles.text}>{element.item}</Text>;
+        }}
+        renderSectionHeader={section => (
+          <View style={styles.item}>
+            <Text style={styles.text}>{section.section.title}</Text>
+          </View>
+        )}
+      />
+    </ScrollView>
   );
 };
 
