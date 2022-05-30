@@ -10,6 +10,8 @@ import {
 import React, {useState} from 'react';
 import Task from './components/Task';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
+import Responsive from './components/Responsive';
+import ListScrollRefresh from './components/ListScrollRefresh';
 
 const App = () => {
   const [task, setTask] = useState();
@@ -24,41 +26,44 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's Tasks</Text>
-        <FlatList
-          style={styles.items}
-          data={taskItems}
-          renderItem={item => {
-            console.log(item.index);
-            return (
-              <Task
-                key={item.index}
-                text={item.item}
-                id={item.index}
-                taskItems={taskItems}
-                setTaskItems={setTaskItems}></Task>
-            );
-          }}
-        />
-      </View>
+    // <View style={styles.container}>
+    //   <View style={styles.tasksWrapper}>
+    //     <Text style={styles.sectionTitle}>Today's Tasks</Text>
+    //     <FlatList
+    //       style={styles.items}
+    //       data={taskItems}
+    //       renderItem={item => {
+    //         console.log(item.index);
+    //         return (
+    //           <Task
+    //             key={item.index}
+    //             text={item.item}
+    //             id={item.index}
+    //             taskItems={taskItems}
+    //             setTaskItems={setTaskItems}></Task>
+    //         );
+    //       }}
+    //     />
+    //   </View>
 
-      <KeyboardAvoidingView
-        style={styles.writeTaskWrapper}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <TextInput
-          style={styles.input}
-          placeholder={'Write a task'}
-          onChangeText={e => setTask(e)}
-        />
-        <TouchableOpacity onPress={() => handleAddTask()}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
-          </View>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
-    </View>
+    //   <KeyboardAvoidingView
+    //     style={styles.writeTaskWrapper}
+    //     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    //     <TextInput
+    //       style={styles.input}
+    //       placeholder={'Write a task'}
+    //       onChangeText={e => setTask(e)}
+    //     />
+    //     <TouchableOpacity onPress={() => handleAddTask()}>
+    //       <View style={styles.addWrapper}>
+    //         <Text style={styles.addText}>+</Text>
+    //       </View>
+    //     </TouchableOpacity>
+    //   </KeyboardAvoidingView>
+    // </View>
+
+    // <Responsive></Responsive>
+    <ListScrollRefresh></ListScrollRefresh>
   );
 };
 
