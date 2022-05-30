@@ -12,6 +12,7 @@ import Task from './components/Task';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import Responsive from './components/Responsive';
 import ListScrollRefresh from './components/ListScrollRefresh';
+import FlatListSectionLIst from './components/FlatListSectionLIst';
 
 const App = () => {
   const [task, setTask] = useState();
@@ -63,7 +64,8 @@ const App = () => {
     // </View>
 
     // <Responsive></Responsive>
-    <ListScrollRefresh></ListScrollRefresh>
+    // <ListScrollRefresh></ListScrollRefresh>
+    <FlatListSectionLIst></FlatListSectionLIst>
   );
 };
 

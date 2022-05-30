@@ -26,7 +26,11 @@ const ListScrollRefresh = () => {
       <ScrollView
         horizontal={false}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['blue']}
+          />
         }>
         {Items.map(element => {
           return (
