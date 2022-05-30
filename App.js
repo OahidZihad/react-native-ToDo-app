@@ -14,6 +14,7 @@ import Responsive from './components/Responsive';
 import ListScrollRefresh from './components/ListScrollRefresh';
 import FlatListSectionLIst from './components/FlatListSectionLIst';
 import TextInputKeyboard from './components/TextInputKeyboard';
+import BtnTouchablePressable from './components/BtnTouchablePressable';
 
 const App = () => {
   const [task, setTask] = useState();
@@ -67,7 +68,8 @@ const App = () => {
     // <Responsive></Responsive>
     // <ListScrollRefresh></ListScrollRefresh>
     // <FlatListSectionLIst></FlatListSectionLIst>
-    <TextInputKeyboard></TextInputKeyboard>
+    // <TextInputKeyboard></TextInputKeyboard>
+    <BtnTouchablePressable></BtnTouchablePressable>
   );
 };
 
