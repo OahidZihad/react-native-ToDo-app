@@ -7,6 +7,8 @@ import {
   Alert,
   ToastAndroid,
   Modal,
+  Image,
+  ImageBackground,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -57,7 +59,11 @@ const AlertToast = () => {
   };
 
   return (
-    <View style={styles.body}>
+    <ImageBackground
+      style={styles.body}
+      source={{
+        uri: 'https://cdn.99images.com/photos/wallpapers/3d-abstract/white%20android-iphone-desktop-hd-backgrounds-wallpapers-1080p-4k-ipjxo.jpg',
+      }}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -105,9 +111,22 @@ const AlertToast = () => {
       </Pressable>
 
       {submitted ? (
-        <Text style={styles.text}>You are registered as {name}</Text>
-      ) : null}
-    </View>
+        <View style={styles.body}>
+          <Text style={styles.text}>You are registered as {name}</Text>
+          <Image
+            style={styles.image}
+            source={require('../assets/done.png')}
+            resizeMode="cover"
+          />
+        </View>
+      ) : (
+        <Image
+          style={styles.image}
+          source={require('../assets/error.png')}
+          resizeMode="cover"
+        />
+      )}
+    </ImageBackground>
   );
 };
 
@@ -178,5 +197,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
   },
 });
