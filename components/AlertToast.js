@@ -11,6 +11,8 @@ import {
   ImageBackground,
 } from 'react-native';
 import React, {useState} from 'react';
+import CustomButton from './CustomButton';
+import Header from './Header';
 
 const AlertToast = () => {
   const [name, setName] = useState('');
@@ -64,6 +66,7 @@ const AlertToast = () => {
       source={{
         uri: 'https://cdn.99images.com/photos/wallpapers/3d-abstract/white%20android-iphone-desktop-hd-backgrounds-wallpapers-1080p-4k-ipjxo.jpg',
       }}>
+      <Header />
       <Modal
         animationType="slide"
         transparent={true}
@@ -100,7 +103,10 @@ const AlertToast = () => {
         maxLength={5}
       />
 
-      <Pressable
+      <CustomButton
+        onPressFunction={onPressHandler}
+        title={submitted ? 'Clear' : 'Submit'}></CustomButton>
+      {/* <Pressable
         style={styles.button}
         onPress={onPressHandler}
         hitSlop={{top: 10, bottom: 10}}
@@ -108,7 +114,7 @@ const AlertToast = () => {
         <Text style={[styles.text, {color: 'white', fontWeight: 'bold'}]}>
           {submitted ? 'Clear' : 'Submit'}
         </Text>
-      </Pressable>
+      </Pressable> */}
 
       {submitted ? (
         <View style={styles.body}>
