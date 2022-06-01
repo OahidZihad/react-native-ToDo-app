@@ -20,41 +20,17 @@ import AlertToast from './components/AlertToast';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import ScreenA from './components/ScreenA';
+import ScreenB from './components/ScreenB';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Stack = createStackNavigator();
-
-const ScreenA = ({navigation}) => {
-  console.log(navigation);
-
-  const onPressHandler = () => {
-    navigation.navigate('ScreenB');
-    // navigation.replace('ScreenB');
-  };
-
-  return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Screen A</Text>
-      <Pressable onPress={onPressHandler}>
-        <Text>Go to Screen B</Text>
-      </Pressable>
-    </View>
-  );
-};
-
-const ScreenB = ({navigation}) => {
-  const onPressHandler = () => {
-    // navigation.navigate('ScreenA');
-    navigation.goBack();
-  };
-  return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Screen B</Text>
-      <Pressable onPress={onPressHandler}>
-        <Text>Go to Screen A</Text>
-      </Pressable>
-    </View>
-  );
-};
+// const Tab = createBottomTabNavigator();
+// const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const App = () => {
   const [task, setTask] = useState();
@@ -112,20 +88,120 @@ const App = () => {
     // <BtnTouchablePressable></BtnTouchablePressable>
     // <AlertToast></AlertToast>
 
+    // <NavigationContainer>
+    //   <Stack.Navigator
+    //     screenOptions={{
+    //       header: () => null,
+    //     }}>
+    //     <Stack.Screen
+    //       name="ScreenA"
+    //       component={ScreenA}
+    //       // options={{
+    //       //   header: () => null,
+    //       // }}
+    //     />
+    //     <Stack.Screen name="ScreenB" component={ScreenB} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+
+    // <NavigationContainer>
+    //   <Tab.Navigator
+    //     screenOptions={({route}) => ({
+    //       tabBarIcon: ({focused, size, color}) => {
+    //         let iconName;
+    //         if (route.name === 'ScreenA') {
+    //           iconName = 'autoprefixer';
+    //           size = focused ? 25 : 20;
+    //           color = focused ? 'black' : '';
+    //         } else if (route.name === 'ScreenB') {
+    //           iconName = 'btc';
+    //           size = focused ? 25 : 20;
+    //           color = focused ? 'black' : '';
+    //         }
+    //         return <FontAwesome5 name={iconName} size={size} color={color} />;
+    //       },
+    //     })}
+    //     tabBarOptions={{
+    //       activeTintColor: 'green',
+    //       inactiveTintColor: 'black',
+    //       activeBackgroundColor: 'white',
+    //       inactiveBackgroundColor: 'gray',
+    //       showLabel: false,
+    //       labelStyle: {fontSize: 14},
+    //     }}>
+    //     <Tab.Screen
+    //       name="ScreenA"
+    //       component={ScreenA}
+    //       options={{tabBarBadge: 2}}
+    //     />
+    //     <Tab.Screen name="ScreenB" component={ScreenB} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
+
+    // <NavigationContainer>
+    //   <Tab.Navigator
+    //     screenOptions={({route}) => ({
+    //       tabBarIcon: ({focused, size, color}) => {
+    //         let iconName;
+    //         if (route.name === 'ScreenA') {
+    //           iconName = 'autoprefixer';
+    //           size = focused ? 25 : 20;
+    //           color = focused ? 'white' : '';
+    //         } else if (route.name === 'ScreenB') {
+    //           iconName = 'btc';
+    //           size = focused ? 25 : 20;
+    //           color = focused ? 'white' : '';
+    //         }
+    //         return <FontAwesome5 name={iconName} size={size} color={color} />;
+    //       },
+    //     })}
+    //     labeled={false}
+    //     barStyle={{
+    //       backgroundColor: '#694fad',
+    //     }}
+    //     activeColor="white"
+    //     inactiveColor="black">
+    //     <Tab.Screen
+    //       name="ScreenA"
+    //       component={ScreenA}
+    //       options={{tabBarBadge: 2}}
+    //     />
+    //     <Tab.Screen name="ScreenB" component={ScreenB} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
+
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          header: () => null,
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, size, color}) => {
+            let iconName;
+            if (route.name === 'ScreenA') {
+              iconName = 'autoprefixer';
+              size = focused ? 25 : 20;
+              color = focused ? 'black' : '';
+            } else if (route.name === 'ScreenB') {
+              iconName = 'btc';
+              size = focused ? 25 : 20;
+              color = focused ? 'black' : '';
+            }
+            return <FontAwesome5 name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'green',
+          inactiveTintColor: 'black',
+          activeBackgroundColor: 'white',
+          inactiveBackgroundColor: 'gray',
+          showLabel: true,
+          labelStyle: {fontSize: 14},
         }}>
-        <Stack.Screen
+        <Tab.Screen
           name="ScreenA"
           component={ScreenA}
-          // options={{
-          //   header: () => null,
-          // }}
+          // options={{tabBarBadge: 2}}
         />
-        <Stack.Screen name="ScreenB" component={ScreenB} />
-      </Stack.Navigator>
+        <Tab.Screen name="ScreenB" component={ScreenB} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
@@ -180,17 +256,6 @@ const styles = StyleSheet.create({
   addText: {
     fontSize: 26,
     color: 'black',
-  },
-
-  body: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    margin: 10,
   },
 });
 
