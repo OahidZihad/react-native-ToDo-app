@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {
   StyleSheet,
   View,
@@ -16,6 +17,44 @@ import FlatListSectionLIst from './components/FlatListSectionLIst';
 import TextInputKeyboard from './components/TextInputKeyboard';
 import BtnTouchablePressable from './components/BtnTouchablePressable';
 import AlertToast from './components/AlertToast';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+
+const Stack = createStackNavigator();
+
+const ScreenA = ({navigation}) => {
+  console.log(navigation);
+
+  const onPressHandler = () => {
+    navigation.navigate('ScreenB');
+    // navigation.replace('ScreenB');
+  };
+
+  return (
+    <View style={styles.body}>
+      <Text style={styles.text}>Screen A</Text>
+      <Pressable onPress={onPressHandler}>
+        <Text>Go to Screen B</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+const ScreenB = ({navigation}) => {
+  const onPressHandler = () => {
+    // navigation.navigate('ScreenA');
+    navigation.goBack();
+  };
+  return (
+    <View style={styles.body}>
+      <Text style={styles.text}>Screen B</Text>
+      <Pressable onPress={onPressHandler}>
+        <Text>Go to Screen A</Text>
+      </Pressable>
+    </View>
+  );
+};
 
 const App = () => {
   const [task, setTask] = useState();
@@ -71,7 +110,23 @@ const App = () => {
     // <FlatListSectionLIst></FlatListSectionLIst>
     // <TextInputKeyboard></TextInputKeyboard>
     // <BtnTouchablePressable></BtnTouchablePressable>
-    <AlertToast></AlertToast>
+    // <AlertToast></AlertToast>
+
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          header: () => null,
+        }}>
+        <Stack.Screen
+          name="ScreenA"
+          component={ScreenA}
+          // options={{
+          //   header: () => null,
+          // }}
+        />
+        <Stack.Screen name="ScreenB" component={ScreenB} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
@@ -125,6 +180,17 @@ const styles = StyleSheet.create({
   addText: {
     fontSize: 26,
     color: 'black',
+  },
+
+  body: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    margin: 10,
   },
 });
 
