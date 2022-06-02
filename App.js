@@ -26,11 +26,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Stack = createStackNavigator();
 // const Tab = createBottomTabNavigator();
 // const Tab = createMaterialBottomTabNavigator();
 const Tab = createMaterialTopTabNavigator();
+const Drawer = createDrawerNavigator();
 
 const App = () => {
   const [task, setTask] = useState();
@@ -170,38 +172,94 @@ const App = () => {
     //   </Tab.Navigator>
     // </NavigationContainer>
 
+    // <NavigationContainer>
+    //   <Tab.Navigator
+    //     screenOptions={({route}) => ({
+    //       tabBarIcon: ({focused, size, color}) => {
+    //         let iconName;
+    //         if (route.name === 'ScreenA') {
+    //           iconName = 'autoprefixer';
+    //           size = focused ? 25 : 20;
+    //           color = focused ? 'black' : '';
+    //         } else if (route.name === 'ScreenB') {
+    //           iconName = 'btc';
+    //           size = focused ? 25 : 20;
+    //           color = focused ? 'black' : '';
+    //         }
+    //         return <FontAwesome5 name={iconName} size={size} color={color} />;
+    //       },
+    //     })}
+    //     tabBarOptions={{
+    //       activeTintColor: 'green',
+    //       inactiveTintColor: 'black',
+    //       activeBackgroundColor: 'white',
+    //       inactiveBackgroundColor: 'gray',
+    //       showLabel: true,
+    //       labelStyle: {fontSize: 14},
+    //     }}>
+    //     <Tab.Screen
+    //       name="ScreenA"
+    //       component={ScreenA}
+    //       // options={{tabBarBadge: 2}}
+    //     />
+    //     <Tab.Screen name="ScreenB" component={ScreenB} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
+
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused, size, color}) => {
-            let iconName;
-            if (route.name === 'ScreenA') {
-              iconName = 'autoprefixer';
-              size = focused ? 25 : 20;
-              color = focused ? 'black' : '';
-            } else if (route.name === 'ScreenB') {
-              iconName = 'btc';
-              size = focused ? 25 : 20;
-              color = focused ? 'black' : '';
-            }
-            return <FontAwesome5 name={iconName} size={size} color={color} />;
+      <Drawer.Navigator
+        initialRouteName="ScreenA"
+        screenOptions={{
+          drawerPosition: 'right',
+          drawerType: 'back',
+          swipeEdgeWidth: 100,
+          drawerHideStatusBarOnOpen: true,
+          overlayColor: '#000000300',
+          drawerStyle: {
+            backgroundColor: '#e6e6e6',
+            width: 250,
           },
-        })}
-        tabBarOptions={{
-          activeTintColor: 'green',
-          inactiveTintColor: 'black',
-          activeBackgroundColor: 'white',
-          inactiveBackgroundColor: 'gray',
-          showLabel: true,
-          labelStyle: {fontSize: 14},
+          headerShown: true,
+          swipeEnabled: true,
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#00000090',
+          },
+          headerTitleStyle: {
+            fontSize: 25,
+            fontWeight: 'bold',
+          },
+          headerTintColor: '#fff',
         }}>
-        <Tab.Screen
+        <Drawer.Screen
           name="ScreenA"
           component={ScreenA}
-          // options={{tabBarBadge: 2}}
+          options={{
+            title: 'Screen A title',
+            drawerIcon: ({focused, size, color}) => (
+              <FontAwesome5
+                name="autoprefixer"
+                size={focused ? 25 : 20}
+                color={focused ? '#0080ff' : '#999999'}
+              />
+            ),
+          }}
         />
-        <Tab.Screen name="ScreenB" component={ScreenB} />
-      </Tab.Navigator>
+        <Drawer.Screen
+          name="ScreenB"
+          component={ScreenB}
+          options={{
+            title: 'Screen B title',
+            drawerIcon: ({focused, size, color}) => (
+              <FontAwesome5
+                name="btc"
+                size={focused ? 25 : 20}
+                color={focused ? '#0080ff' : '#999999'}
+              />
+            ),
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

@@ -4,8 +4,10 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
 const ScreenA = ({navigation}) => {
   const onPressHandler = () => {
-    navigation.navigate('ScreenB');
+    // navigation.navigate('ScreenB');
     // navigation.replace('ScreenB');
+    navigation.openDrawer();
+    // navigation.closeDrawer();
   };
 
   return (
