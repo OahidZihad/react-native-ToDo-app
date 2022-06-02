@@ -2,11 +2,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
-const ScreenA = ({navigation}) => {
+const ScreenA = ({navigation, route}) => {
   const onPressHandler = () => {
-    // navigation.navigate('ScreenB');
+    navigation.navigate('ScreenB');
     // navigation.replace('ScreenB');
-    navigation.openDrawer();
+    // navigation.openDrawer();
     // navigation.closeDrawer();
   };
 
@@ -16,6 +16,7 @@ const ScreenA = ({navigation}) => {
       <Pressable onPress={onPressHandler}>
         <Text>Go to Screen B</Text>
       </Pressable>
+      <Text style={styles.text}>{route.params.message}</Text>
     </View>
   );
 };
