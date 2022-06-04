@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import CustomButton from './CustomButton';
-import Header from './Header';
+import Header from '../Utils/Header';
 
 const AlertToast = () => {
   const [name, setName] = useState('');
@@ -121,14 +121,14 @@ const AlertToast = () => {
           <Text style={styles.text}>You are registered as {name}</Text>
           <Image
             style={styles.image}
-            source={require('../assets/done.png')}
+            source={require('../../assets/done.png')}
             resizeMode="cover"
           />
         </View>
       ) : (
         <Image
           style={styles.image}
-          source={require('../assets/error.png')}
+          source={require('../../assets/error.png')}
           resizeMode="cover"
         />
       )}

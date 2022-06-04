@@ -9,19 +9,19 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import React, {useState} from 'react';
-import Task from './components/Task';
+import Task from './components/Utils/Task';
 import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
-import Responsive from './components/Responsive';
-import ListScrollRefresh from './components/ListScrollRefresh';
-import FlatListSectionLIst from './components/FlatListSectionLIst';
-import TextInputKeyboard from './components/TextInputKeyboard';
-import BtnTouchablePressable from './components/BtnTouchablePressable';
-import AlertToast from './components/AlertToast';
+import Responsive from './components/Screens/Responsive';
+import ListScrollRefresh from './components/Utils/ListScrollRefresh';
+import FlatListSectionLIst from './components/Utils/FlatListSectionLIst';
+import TextInputKeyboard from './components/Utils/TextInputKeyboard';
+import BtnTouchablePressable from './components/Utils/BtnTouchablePressable';
+import AlertToast from './components/Utils/AlertToast';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-import ScreenA from './components/ScreenA';
-import ScreenB from './components/ScreenB';
+import ScreenA from './components/Screens/ScreenA';
+import ScreenB from './components/Screens/ScreenB';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
@@ -208,7 +208,7 @@ const App = () => {
 
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="ScreenA"
+        initialRouteName="ScreenB"
         screenOptions={{
           drawerPosition: 'right',
           drawerType: 'back',
