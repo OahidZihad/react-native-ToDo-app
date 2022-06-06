@@ -29,6 +29,8 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Login from './components/Screens/Login';
 import Home from './components/Utils/Home';
+import {Provider} from 'react-redux';
+import {Store} from './components/Redux/store';
 
 const Stack = createStackNavigator();
 // const Tab = createBottomTabNavigator();
@@ -267,7 +269,7 @@ const App = () => {
     //     />
     //   </Drawer.Navigator>
     // </NavigationContainer>
-
+    // <Provider store={Store}>
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Login"
@@ -296,6 +298,7 @@ const App = () => {
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
+    // </Provider>
   );
 };
 
